@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import Fruta from '../fruta.inteface';
+import { FrutasFormComponent } from '../frutas-form/frutas-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-frutas-list',
@@ -12,6 +14,7 @@ export class FrutasListComponent {
 
   frutas: Fruta[] = []
 
+  modal = inject(NgbModal);
   ngOnInit(){
     this.listar()
   }
@@ -70,17 +73,42 @@ export class FrutasListComponent {
     ]
 
   }
-  seleccionarFruta(frutaId: number){
-    console.log(this.frutas[frutaId])
+  seleccionarFruta(fruta: Fruta){
+
   }
   add(){
-
+    this.openForm()
   }
   update(fruta:Fruta) {
+    this.openForm('update', fruta)
+  }
+  async openForm(accion='add', fruta?:Fruta){
+    let ref = this.modal.open(FrutasFormComponent)
+    ref.componentInstance.accion=accion;
+    ref.componentInstance.frutas = this.frutas;
+    if(accion = 'update'){
+      ref.componentInstance.fruta = fruta;
+    }
+    //Espera para la confirmacion
+    try {
+      let result = await ref.result;
+      console.log("result ===> ", result )
+      console.log("ACCION ", accion)
+      if(accion == 'add'){
+        this.frutas.push(result)
+        console.log("s*****:/*****")
+      }
+      console.log(this.frutas)
+      alert("Se guardó correctamente")
+    } catch (error) {
+      alert("hubo un error al guardar")
+    }
 
   }
-  delete(fruta:Fruta, index: number){
-
+  deleted(fruta:Fruta, index: number){
+    if(confirm("¿Estas seguro de eliminar el registro?")){
+      this.frutas.splice(index, 1);
+    }
   }
 
 }

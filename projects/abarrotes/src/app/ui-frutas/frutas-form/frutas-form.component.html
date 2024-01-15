@@ -1,1 +1,29 @@
-<p>frutas-form works!</p>
+<div class="modal-header">
+  <div class="modal-title">Formulario Frutas - {{accion}}</div>
+</div>
+<button type="button" (click)="cerrar()"></button>
+<div class="modal-body">
+  <form  [formGroup]="formFruta">
+    <div class="form-group">
+      <label for="denominacion">denominacion</label>
+      <input type="text" clase="form-control" formControlName="denominacion" id="denominacion">
+    </div>
+    <div class="form-group">
+      <label for="precio">precio</label>
+      <input type="text" clase="form-control" formControlName="precio" id="precio">
+    </div>
+    <div class="form-group">
+      <label for="cantidad">cantidad</label>
+      <input type="text" clase="form-control" formControlName="cantidad" id="cantidad">
+    </div>
+    <div class="form-group">
+      <label for="imagen">imagen</label>
+      <input type="file" clase="form-control" formControlName="imagen" id="imagen">
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="cerrar()">cerrar</button>
+  <button type="button" class="btn btn-primary" (click)="save()">guardar</button>
+</div>
