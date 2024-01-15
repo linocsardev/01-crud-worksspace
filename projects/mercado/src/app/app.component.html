@@ -1,0 +1,21 @@
+<h3>Emparejando Frutas</h3>
+<table class="tablePro">
+  <thead class="thead">
+    <tr class="fila">
+      <th>ID</th>
+      <th>NOMBRE</th>
+      <th>DESCRIPCION</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody class="tbody">
+    @for (item of frutas; track $index){
+      <tr (click)="seleccionarProd($index)">
+        <td>{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.descripcion}}</td>
+        <td>{{item.estado}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

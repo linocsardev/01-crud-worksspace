@@ -1,0 +1,32 @@
+<h3>Listado de Frutas</h3>
+<div class="container-button">
+  <button type="button" class="btn btn-success" (click)="add()">Adicionar</button>
+</div>
+<table class="table">
+  <thead class="head">
+    <tr class="fila">
+      <th>Nro</th>
+      <th>Fruta</th>
+      <th>Denominacion</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(fruta of frutas; track $index){
+      <tr class="filaContent" (click)= "seleccionarFruta($index)">
+        <td>{{$index +1 }}</td>
+        <td><img src={{fruta.imagen}} /></td>
+        <td>{{fruta.denominacion}}</td>
+        <td>{{fruta.precio}}</td>
+        <td>{{fruta.cantidad}}</td>
+        <td class="btns-actions">
+          <button class="btn btn-primary btn-sm"(click)="update(fruta)">update</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(fruta, $index)">delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+

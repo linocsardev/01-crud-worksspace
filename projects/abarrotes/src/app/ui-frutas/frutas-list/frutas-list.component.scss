@@ -1,0 +1,33 @@
+
+
+.container-button {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}
+.table {
+  border: 1px solid rgb(187, 182, 182);
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 70%;
+}
+th, td {
+  border: 1px solid rgb(187, 182, 182);
+}
+th {
+  padding: 9px 19px;
+}
+.fila {
+  cursor: pointer;
+}
+td{
+  text-align: center;
+  vertical-align: middle;
+}
+.btns-actions {
+  & button {
+    margin-left: 10px;
+  }
+}

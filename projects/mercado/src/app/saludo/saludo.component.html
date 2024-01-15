@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">
+    Emparejar con ...
+  </div>
+  <button class="btn btn-close" (click)="cerrar()"></button>
+</div>
+<div class="modal-body">
+  <table class="tableProModal">
+    <thead class="thead">
+      <tr class="fila">
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>DESCRIPCION</th>
+        <th>ESTADO</th>
+        <th>ACCION</th>
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      @for (item of newArray; track $index){
+        <tr (click)="emparejar($index)">
+          <td>{{item.id}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.descripcion}}</td>
+          <td>{{item.estado}}</td>
+          <td><button class="btn btn-primary">Emparejar</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+
+</div>
