@@ -1,24 +1,24 @@
 <div class="modal-header">
-  <div class="modal-title">Formulario Frutas - {{accion}}</div>
+  <div class="modal-title">{{(accion=='add')? "Nuevo registro":"Actualizar"}}</div>
+  <button type="button" class="btn btn-close" (click)="cerrar()"></button>
 </div>
-<button type="button" (click)="cerrar()"></button>
 <div class="modal-body">
-  <form  [formGroup]="formFruta">
+  <form class="form"  [formGroup]="formFruta">
     <div class="form-group">
       <label for="denominacion">denominacion</label>
-      <input type="text" clase="form-control" formControlName="denominacion" id="denominacion">
+      <input type="text" class="form-control" formControlName="denominacion" id="denominacion" placeholder="denominacion">
     </div>
     <div class="form-group">
       <label for="precio">precio</label>
-      <input type="text" clase="form-control" formControlName="precio" id="precio">
+      <input type="number" class="form-control" formControlName="precio" id="precio" placeholder="0.0">
     </div>
     <div class="form-group">
       <label for="cantidad">cantidad</label>
-      <input type="text" clase="form-control" formControlName="cantidad" id="cantidad">
+      <input type="number" class="form-control" formControlName="cantidad" id="cantidad" placeholder="0">
     </div>
     <div class="form-group">
       <label for="imagen">imagen</label>
-      <input type="file" clase="form-control" formControlName="imagen" id="imagen">
+      <input type="file" class="form-control" formControlName="imagen" id="imagen">
     </div>
 
   </form>

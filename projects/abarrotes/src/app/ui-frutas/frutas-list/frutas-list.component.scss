@@ -1,4 +1,8 @@
-
+.container-header{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
 
 .container-button {
   width: 70%;
@@ -17,7 +21,7 @@ th, td {
   border: 1px solid rgb(187, 182, 182);
 }
 th {
-  padding: 9px 19px;
+  padding: 5px 13px;
 }
 .fila {
   cursor: pointer;

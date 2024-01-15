@@ -8,107 +8,107 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [],
   templateUrl: './frutas-list.component.html',
-  styleUrl: './frutas-list.component.scss'
+  styleUrl: './frutas-list.component.scss',
 })
 export class FrutasListComponent {
-
-  frutas: Fruta[] = []
+  frutas: Fruta[] = [];
 
   modal = inject(NgbModal);
-  ngOnInit(){
-    this.listar()
+  ngOnInit() {
+    this.listar();
   }
 
-  listar(){
+  listar() {
     this.frutas = [
       {
-          codigo: 1,
-          denominacion: "Manzana",
-          imagen: "../../../assets/manzana.png",
-          precio: 8,
-          cantidad: 30,
-          cantidad_vendido: 0
+        codigo: 1,
+        denominacion: 'Manzana',
+        imagen: '../../../assets/manzana.png',
+        precio: 8,
+        cantidad: 30,
+        cantidad_vendido: 0,
       },
       {
-          codigo: 2,
-          denominacion: "Pera",
-          imagen: "../../../assets/pera.png",
-          precio: 9,
-          cantidad: 25,
-          cantidad_vendido: 0
-
+        codigo: 2,
+        denominacion: 'Pera',
+        imagen: '../../../assets/pera.png',
+        precio: 9,
+        cantidad: 25,
+        cantidad_vendido: 0,
       },
       {
-          codigo: 3,
-          denominacion: "Cereza",
-          imagen: "../../../assets/cereza.png",
-          precio: 6,
-          cantidad: 18,
-          cantidad_vendido: 0
+        codigo: 3,
+        denominacion: 'Cereza',
+        imagen: '../../../assets/cereza.png',
+        precio: 6,
+        cantidad: 18,
+        cantidad_vendido: 0,
       },
       {
-          codigo: 4,
-          denominacion: "Limon",
-          imagen: "../../../assets/limon.png",
-          precio: 9,
-          cantidad: 30,
-          cantidad_vendido: 0
+        codigo: 4,
+        denominacion: 'Limon',
+        imagen: '../../../assets/limon.png',
+        precio: 9,
+        cantidad: 30,
+        cantidad_vendido: 0,
       },
       {
         codigo: 5,
-        denominacion: "Sandia",
-        imagen: "../../../assets/sandia.png",
+        denominacion: 'Sandia',
+        imagen: '../../../assets/sandia.png',
         precio: 9,
         cantidad: 30,
-        cantidad_vendido: 0
-    },
-    {
-      codigo: 6,
-      denominacion: "Uvas",
-      imagen: "../../../assets/uvas.png",
-      precio: 9,
-      cantidad: 30,
-      cantidad_vendido: 0
+        cantidad_vendido: 0,
+      },
+      {
+        codigo: 6,
+        denominacion: 'Uvas',
+        imagen: '../../../assets/uvas.png',
+        precio: 9,
+        cantidad: 30,
+        cantidad_vendido: 0,
+      },
+    ];
   }
-    ]
+  seleccionarFruta(fruta: Fruta) {}
+  //adicionar
+  add() {
+    this.openForm();
+  }
+  //actualizar
+  update(fruta: Fruta) {
+    this.openForm('update', fruta);
+  }
 
-  }
-  seleccionarFruta(fruta: Fruta){
-
-  }
-  add(){
-    this.openForm()
-  }
-  update(fruta:Fruta) {
-    this.openForm('update', fruta)
-  }
-  async openForm(accion='add', fruta?:Fruta){
-    let ref = this.modal.open(FrutasFormComponent)
-    ref.componentInstance.accion=accion;
+  async openForm(accion = 'add', fruta?: Fruta) {
+    let ref = this.modal.open(FrutasFormComponent);
+    ref.componentInstance.accion = accion;
     ref.componentInstance.frutas = this.frutas;
-    if(accion = 'update'){
+
+    console.log(ref.componentInstance.accion);
+    if (accion == 'update') {
       ref.componentInstance.fruta = fruta;
     }
-    //Espera para la confirmacion
+    //Espera para la confirmacion...
+
     try {
       let result = await ref.result;
-      console.log("result ===> ", result )
-      console.log("ACCION ", accion)
-      if(accion == 'add'){
-        this.frutas.push(result)
-        console.log("s*****:/*****")
-      }
-      console.log(this.frutas)
-      alert("Se guardó correctamente")
-    } catch (error) {
-      alert("hubo un error al guardar")
-    }
 
+      console.table(result);
+
+      console.log('ACCION', accion);
+      if (accion == 'add') {
+        this.frutas.push(result);
+      }
+      console.table(this.frutas);
+      alert('Se guardó correctamente');
+    } catch (error) {
+      alert('No se completo la operación');
+    }
   }
-  deleted(fruta:Fruta, index: number){
-    if(confirm("¿Estas seguro de eliminar el registro?")){
+  deleted(fruta: Fruta, index: number) {
+    if (confirm('¿Estas seguro de eliminar el registro?')) {
       this.frutas.splice(index, 1);
     }
   }
-
 }
