@@ -1,0 +1,35 @@
+<main class="container-user">
+  <h2>Lista de Usuarios</h2>
+  <div class="list-users">
+    <div class="table-responsive-md">
+      <table class="table table-bordered table-hover table-sm">
+        <thead>
+          <tr class="bg-success">
+            <th>Id</th>
+            <th>User</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(user of users; track $index){
+            <tr class="fila">
+              <td>{{user.id}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.password}}</td>
+
+              <td>{{user.name.lastname}} {{user.name.firstname}}</td>
+              <td>{{user.address.city}} {{user.address.street}} Nro: {{user.address.number}} {{user.address.zipcode}}</td>
+              <td>{{user.phone}}</td>
+
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,18 @@
+.card-container {
+  display: grid;
+  gap: 10px;
+  margin: auto;
+  width: 80%;
+  grid-template-columns: repeat(6, 1fr);
+
+}
+.card-item {
+  border: 1px solid grey;
+  width: 10rem;
+
+}
+.card-container-img {
+  .card-img {
+    width: 70px;
+  }
+}

@@ -1,0 +1,21 @@
+<h2>Gestión de productos</h2>
+<button class="btn btn-warning" (click)="add()" >Agregar</button>
+<div class="card-container">
+  @for(producto of productos ; track $index){
+    <div class="card-item">
+      <div class="card-container-img">
+        <img class="card-img" src={{producto.image}} alt="">
+      </div>
+      <div class="card-info">
+        <div class="card-info-title">{{producto.title}}</div>
+        <div class="card-info-price">{{producto.price}}</div>
+        <div class="card-info-category">{{producto.category}}</div>
+        <div class="card-buttons">
+
+          <button type="button" class="btn btn-success btn-md" (click)="update(producto)" >actualizar</button>
+          <button type="button" class="btn btn-danger btn-md" (click)="deleted(producto, $index)" >borrar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
