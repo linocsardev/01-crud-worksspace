@@ -12,6 +12,7 @@
             <th>Nombre</th>
             <th>Direccion</th>
             <th>Telefono</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -25,7 +26,10 @@
               <td>{{user.name.lastname}} {{user.name.firstname}}</td>
               <td>{{user.address.city}} {{user.address.street}} Nro: {{user.address.number}} {{user.address.zipcode}}</td>
               <td>{{user.phone}}</td>
-
+              <td>
+                <button type="button" class="btn btn-danger" (click)="update('update', user)">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="deleted(user, $index)">Eliminar</button>
+              </td>
             </tr>
           }
         </tbody>

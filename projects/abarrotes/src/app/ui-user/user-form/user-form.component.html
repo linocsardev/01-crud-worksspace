@@ -5,27 +5,51 @@
 <div class="modal-body">
   <form [formGroup]="userForm">
       <div class="form-group">
-          <label for="title">Denominación</label>
-          <input type="text" formControlName="title" class="form-control" id="title">
+          <label for="email">Email</label>
+          <input type="text" formControlName="email" class="form-control" id="email">
       </div>
       <div class="form-group">
-          <label for="image">Imagen</label>
-          <input type="text" formControlName="image" class="form-control" id="image">
+          <label for="username">username</label>
+          <input type="text" formControlName="username" class="form-control" id="username">
       </div>
       <div class="form-group">
-          <label for="price">Precio</label>
-          <input type="text" formControlName="price" class="form-control" id="price">
-      </div>
-
-
-      <div class="form-group">
-          <label for="categoria">Caregoria</label>
-          <input type="text" formControlName="category" class="form-control" id="categoria">
+          <label for="password">Password</label>
+          <input type="text" formControlName="password" class="form-control" id="password">
       </div>
 
+
       <div class="form-group">
-          <label for="description">Descripción</label>
-          <input type="text" formControlName="description" class="form-control" id="description">
+          <label for="firstName">Nombre</label>
+          <input type="text" formControlName="firstName" class="form-control" id="firstName">
+      </div>
+      <div class="form-group">
+          <label for="lastName">Apellidos</label>
+          <input type="text" formControlName="lastName" class="form-control" id="lastName">
+      </div>
+
+      <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" formControlName="city" class="form-control" id="city">
+      </div>
+      <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" formControlName="street" class="form-control" id="street">
+      </div>
+      <div class="form-group">
+          <label for="address-number">Number</label>
+          <input type="text" formControlName="address-number" class="form-control" id="address-number">
+      </div>
+      <div class="form-group">
+          <label for="address-zipcode">Zipcode</label>
+          <input type="text" formControlName="address-zipcode" class="form-control" id="address-zipcode">
+      </div>
+      <div class="form-group">
+          <label for="geoLat">Latitud</label>
+          <input type="text" formControlName="geoLat" class="form-control" id="geoLat">
+      </div>
+      <div class="form-group">
+          <label for="geoLong">Longitud</label>
+          <input type="text" formControlName="geoLong" class="form-control" id="geoLong">
       </div>
       <button class="btn btn-danger" type="button" (click)="save()">Guardar</button>
       <button class="btn btn-info" type="button" (click)="close()">Cancelar</button>
