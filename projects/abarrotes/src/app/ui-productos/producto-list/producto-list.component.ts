@@ -6,12 +6,13 @@ import { ProductoFormComponent } from '../producto-form/producto-form.component'
 import { ProductoService } from '../producto.service';
 import { Producto } from '../producto.inteface';
 import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-producto-list',
   standalone: true,
-  imports: [HttpClientModule, NgbModalModule],
+  imports: [HttpClientModule, NgbModalModule, CommonModule],
   providers: [ProductoService],
   templateUrl: './producto-list.component.html',
   styleUrl: './producto-list.component.scss'
@@ -28,8 +29,9 @@ export class ProductoListComponent {
   }
 
   async listar(){
-  let productos = await this.productoService.list()
-  this.productos = productos
+    let productos = await this.productoService.list()
+    this.productos = productos
+    console.log(this.productos)
   }
 
   add(){
@@ -42,6 +44,8 @@ export class ProductoListComponent {
     let ref = this.modal.open(ProductoFormComponent)
     ref.componentInstance.accion= accion;
     if(accion == "update"){
+      console.log("update1");
+
       ref.componentInstance.producto = JSON.parse(JSON.stringify(producto))
     }
     try {
@@ -50,6 +54,8 @@ export class ProductoListComponent {
       if(accion == "add"){
         this.productos.unshift(result)
       }else if(accion == 'update' && producto){
+      console.log("update2");
+
         producto.title = result.title;
         producto.price = result.price;
         producto.category = result.category;
@@ -81,7 +87,20 @@ export class ProductoListComponent {
       let ref = this.modal.open(ProductoDetailComponent);
       ref.componentInstance.producto = producto
     }
+  }
+  getCategoryClass(category: string): string{
 
+    if(category == "men's clothing"){
+      return 'category-men';
+    }else if(category == 'jewelery'){
+      return 'category-jewelery';
+    }else if( category == "women's clothing"){
+      return 'category-women';
+    }else if(category == "electronics"){
+      return "category-electronics";
+    }else{
+      return "category-default";
+    }
   }
 }
 

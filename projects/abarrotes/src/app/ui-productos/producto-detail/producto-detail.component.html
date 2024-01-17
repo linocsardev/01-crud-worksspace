@@ -1,9 +1,40 @@
 <div class="modal-header">
-  Detalle Producto {{producto.title}}
+  <div class="modal-title">
+    <h4>{{producto.title}}</h4>
+  </div>
+  <button class="btn btn-close" (click)="close()"></button>
 </div>
 <div class="modal-body">
 
-</div>
-<div class="modal-footer">
+  <div class="producto-detail">
+    <div class="producto-image">
+      <img src={{producto.image}} alt="">
 
+
+
+      <div class="container-categoria-producto">
+        Categoria : <span class="categoria-producto">{{producto.category}}</span>
+      </div>
+      <div class="price">
+        {{producto.price}}
+      </div>
+    </div>
+
+    <div class="producto-info">
+      <table class="table-info-producto">
+        <thead>
+          <tr>
+            <th class="cabecera-description">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{producto.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
+

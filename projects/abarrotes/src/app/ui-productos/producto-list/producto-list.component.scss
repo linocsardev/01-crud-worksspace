@@ -4,15 +4,85 @@
   margin: auto;
   width: 80%;
   grid-template-columns: repeat(6, 1fr);
-
+  font-family: 'Montserrat', sans-serif;
 }
 .card-item {
-  border: 1px solid grey;
-  width: 10rem;
-
+  border: 1px solid rgb(218, 210, 210);
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 3px 2px #dfdbdb;
+  cursor: pointer;
+  position: relative;
 }
 .card-container-img {
-  .card-img {
-    width: 70px;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    width: 50%;
+    background-size: cover;
   }
+  .card-info {
+    height:35%;
+  }
+  .card-buttons {
+    height: 15%;
+  }
+}
+.card-info{
+  .card-info-title {
+    font-size: .7rem;
+  }
+}
+.card-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+.card-info-category{
+  background-color: sandybrown;
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  width: auto;
+  padding: 1px 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.card-info-price {
+  font-weight: 800;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 5px;
+  bottom: 40%;
+
+  color: #000;
+  padding: 3px 5px;
+  border-radius: 50%;
+}
+///cambiando los colores para las categrias
+.category-men {
+  background-color: #3498db;
+}
+
+.category-jewelery {
+  background-color: #a34343;
+}
+
+.category-women {
+  background-color: #b98730;
+}
+
+.category-electronics {
+  background-color: #fabedc;
+}
+
+.category-default {
+  background-color: #abcde3;
 }

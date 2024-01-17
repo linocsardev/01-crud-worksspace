@@ -2,19 +2,19 @@
 <button class="btn btn-warning" (click)="add()" >Agregar</button>
 <div class="card-container">
   @for(producto of productos ; track $index){
-    <div class="card-item">
+    <div class="card-item" (dblclick)="detailProduct(producto)">
       <div class="card-container-img">
         <img class="card-img" src={{producto.image}} alt="">
       </div>
       <div class="card-info">
+        <span [ngClass]="getCategoryClass(producto.category)" class="card-info-category">{{producto.category}}</span>
         <div class="card-info-title">{{producto.title}}</div>
-        <div class="card-info-price">{{producto.price}}</div>
-        <div class="card-info-category">{{producto.category}}</div>
-        <div class="card-buttons">
+        <div class="card-info-price">S/. {{producto.price}}</div>
 
-          <button type="button" class="btn btn-success btn-md" (click)="update(producto)" >actualizar</button>
-          <button type="button" class="btn btn-danger btn-md" (click)="deleted(producto, $index)" >borrar</button>
-        </div>
+      </div>
+      <div class="card-buttons">
+        <button class="btn btn-outline-danger btn-sm" (click)="deleted(producto, $index)" >borrar</button>
+        <button class="btn btn-outline-success btn-sm" (click)="update(producto)" >actualizar</button>
       </div>
     </div>
   }

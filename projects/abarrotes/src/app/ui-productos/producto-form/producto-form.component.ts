@@ -22,6 +22,7 @@ export class ProductoFormComponent {
 
   ngOnInit(){
     document.getElementById("title")?.focus()
+    console.log(this.producto);
     if(this.accion == 'update' && this.producto ){
       this.productoForm.get('title')?.setValue(this.producto.title)
       this.productoForm.get('price')?.setValue(typeof this.producto.price != "undefined" ? this.producto.price + "" : "")
