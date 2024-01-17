@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductoFormComponent } from '../producto-form/producto-form.component';
 import { ProductoService } from '../producto.service';
 import { Producto } from '../producto.inteface';
+import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
 
 
 @Component({
@@ -61,5 +62,26 @@ export class ProductoListComponent {
   }
 
 
-  deleted(producto: Producto, indice: number){}
+  async deleted(producto: Producto, indice: number){
+    let confirmar = confirm(`estás seguro de eliminar al usuario? ${producto.title}?`)
+    if(confirmar){
+      try {
+        let result = this.productoService.delete(producto)
+        console.log('deleted => ', result)
+        this.productos.splice(indice, 1)
+
+      } catch (error) {
+        console.log("Hubo un error al eliminar ", error);
+      }
+
+    }
+  }
+  detailProduct(producto: Producto){
+    if(this.modal){
+      let ref = this.modal.open(ProductoDetailComponent);
+      ref.componentInstance.producto = producto
+    }
+
+  }
 }
+

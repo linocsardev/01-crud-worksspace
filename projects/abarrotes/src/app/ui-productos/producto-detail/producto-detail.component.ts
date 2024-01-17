@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Producto } from '../producto.inteface';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-producto-detail',
@@ -9,4 +11,10 @@ import { Component } from '@angular/core';
 })
 export class ProductoDetailComponent {
 
+  @Input() producto!:Producto;
+  private modal = inject(NgbActiveModal)
+
+  close(){
+    this.modal.dismiss()
+  }
 }

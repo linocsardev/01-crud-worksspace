@@ -44,6 +44,10 @@ export class UserListComponent {
       let result = await ref.result;
       if(accion == 'add'){
         this.users.unshift(result)
+        //prueba
+        console.log("+++Prueba+++")
+        console.log(this.users)
+        console.log(result)
       }else if(accion == 'update' && user){
         user.username = result.username;
         user.name.firstname = result.name.firstname;
@@ -56,9 +60,13 @@ export class UserListComponent {
         user.address.zipcode = result.address.zipcode
         user.phone = result.phone
       }
+      alert("Operación Exitosa !!!")
     } catch (error) {
       alert("No se terminó la operación")
       console.log(error)
     }
+  }
+  deleted(user:User, indice:number){
+
   }
 }

@@ -3,6 +3,7 @@
   <button class="btn btn-close"></button>
 </div>
 <div class="modal-body">
+
   <form [formGroup]="userForm">
       <div class="form-group">
           <label for="email">Email</label>
@@ -36,12 +37,12 @@
           <input type="text" formControlName="street" class="form-control" id="street">
       </div>
       <div class="form-group">
-          <label for="address-number">Number</label>
-          <input type="text" formControlName="address-number" class="form-control" id="address-number">
+          <label for="addressNumber">Number</label>
+          <input type="text" formControlName="addressNumber" class="form-control" id="addressNumber">
       </div>
       <div class="form-group">
           <label for="address-zipcode">Zipcode</label>
-          <input type="text" formControlName="address-zipcode" class="form-control" id="address-zipcode">
+          <input type="text" formControlName="addressZipcode" class="form-control" id="address-zipcode">
       </div>
       <div class="form-group">
           <label for="geoLat">Latitud</label>
@@ -50,6 +51,10 @@
       <div class="form-group">
           <label for="geoLong">Longitud</label>
           <input type="text" formControlName="geoLong" class="form-control" id="geoLong">
+      </div>
+          <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" formControlName="phone" class="form-control" id="phone">
       </div>
       <button class="btn btn-danger" type="button" (click)="save()">Guardar</button>
       <button class="btn btn-info" type="button" (click)="close()">Cancelar</button>

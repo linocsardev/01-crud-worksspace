@@ -1,5 +1,8 @@
 <main class="container-user">
   <h2>Lista de Usuarios</h2>
+  <div class="container-btn-registrar">
+    <button class="btn btn-primary" (click)="add()">Registrar</button>
+  </div>
   <div class="list-users">
     <div class="table-responsive-md">
       <table class="table table-bordered table-hover table-sm">
@@ -23,11 +26,11 @@
               <td>{{user.email}}</td>
               <td>{{user.password}}</td>
 
-              <td>{{user.name.lastname}} {{user.name.firstname}}</td>
-              <td>{{user.address.city}} {{user.address.street}} Nro: {{user.address.number}} {{user.address.zipcode}}</td>
+              <td>{{user.name.firstname}} {{user.name.lastname}}</td>
+              <td>{{user.address.city}} | {{user.address.street}} | {{user.address.number}} | {{user.address.zipcode}}</td>
               <td>{{user.phone}}</td>
               <td>
-                <button type="button" class="btn btn-danger" (click)="update('update', user)">Editar</button>
+                <button type="button" class="btn btn-success" (click)="update(user)">Editar</button>
                 <button type="button" class="btn btn-danger" (click)="deleted(user, $index)">Eliminar</button>
               </td>
             </tr>

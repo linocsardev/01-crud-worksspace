@@ -73,6 +73,7 @@ export class ProductoFormComponent {
 
        try {
           let response = await this.productoService.add(nuevo_producto);
+          console.log(response)
           this.modalActive.close(response)
        } catch (error) {
           console.log(error)
