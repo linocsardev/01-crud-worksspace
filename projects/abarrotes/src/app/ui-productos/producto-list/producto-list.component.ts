@@ -7,24 +7,32 @@ import { ProductoService } from '../producto.service';
 import { Producto } from '../producto.inteface';
 import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
 import { CommonModule } from '@angular/common';
+import { Categoria } from '../../ui-categoria/categoria.inteface';
+import { FormsModule } from '@angular/forms';
+import { CatalogoService } from '../../catalogo/catalogo.service';
 
 
 @Component({
   selector: 'app-producto-list',
   standalone: true,
-  imports: [HttpClientModule, NgbModalModule, CommonModule],
+  imports: [HttpClientModule, NgbModalModule, FormsModule, CommonModule],
   providers: [ProductoService],
   templateUrl: './producto-list.component.html',
   styleUrl: './producto-list.component.scss'
 })
 export class ProductoListComponent {
   private productoService = inject(ProductoService)
+  private catalagoService = inject(CatalogoService)
   private modal = inject(NgbModal)
 
   productos: Producto[] = []
+  categorias: Categoria[]= []
+  idcategoria:string = ""
   // productos2: Array<Producto> = []
 
-  ngOnInit(){
+  async ngOnInit(){
+    await this.catalagoService.getCatalogos();
+    this.categorias = this.catalagoService.categorias;
     this.listar()
   }
 
@@ -43,6 +51,7 @@ export class ProductoListComponent {
   async openForm(accion = 'add', producto?: Producto){
     let ref = this.modal.open(ProductoFormComponent)
     ref.componentInstance.accion= accion;
+    ref.componentInstance.idcategoria = this.idcategoria;
     if(accion == "update"){
       console.log("update1");
 

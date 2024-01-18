@@ -53,34 +53,35 @@
   padding: 1px 3px;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
 }
 .card-info-price {
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   position: absolute;
   right: 5px;
   bottom: 40%;
 
-  color: #000;
+  color: #292828;
   padding: 3px 5px;
   border-radius: 50%;
 }
 ///cambiando los colores para las categrias
 .category-men {
-  background-color: #3498db;
+  background-color: blue;
 }
 
 .category-jewelery {
-  background-color: #a34343;
+  background-color: red;
 }
 
 .category-women {
-  background-color: #b98730;
+  background-color: purple;
+
 }
 
 .category-electronics {
-  background-color: #fabedc;
+  background-color: green;
 }
 
 .category-default {

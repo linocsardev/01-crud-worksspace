@@ -4,6 +4,8 @@ import { Producto } from '../producto.inteface';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { ProductoService } from '../producto.service';
+import { Categoria } from '../../ui-categoria/categoria.inteface';
+import { CatalogoService } from '../../catalogo/catalogo.service';
 
 @Component({
   selector: 'app-producto-form',
@@ -15,20 +17,30 @@ import { ProductoService } from '../producto.service';
 export class ProductoFormComponent {
 
   @Input() accion = 'add'
+  @Input() idcategoria = ""
   @Input() producto?:Producto;
   @Input() isModal:boolean = true
   @Optional() private modalActive = inject(NgbActiveModal)
   private productoService = inject(ProductoService)
+  private catalogoService = inject(CatalogoService)
+  categorias:Categoria[] = []
+  async ngOnInit(){
 
-  ngOnInit(){
     document.getElementById("title")?.focus()
-    console.log(this.producto);
+    await this.catalogoService.getCatalogos();
+    this.categorias = this.catalogoService.categorias
+    // this.categorias = await this.categoriaService.listar()
+    console.log("Ya se cargaron los datos y ya no es necesario consultar a la API")
+    console.log(this.categorias)
     if(this.accion == 'update' && this.producto ){
       this.productoForm.get('title')?.setValue(this.producto.title)
       this.productoForm.get('price')?.setValue(typeof this.producto.price != "undefined" ? this.producto.price + "" : "")
       this.productoForm.get('category')?.setValue(this.producto?.category)
       this.productoForm.get('description')?.setValue(this.producto?.description)
       this.productoForm.get('image')?.setValue(this.producto?.image)
+    }else if(this.accion == 'add') {
+      console.log(this.idcategoria)
+      this.productoForm.get("category")?.setValue(this.idcategoria)
     }
   }
 
@@ -49,8 +61,10 @@ export class ProductoFormComponent {
   }
   async save() {
 
-    if (!this.productoForm.valid)
-       return;
+    if (!this.productoForm.valid){
+      alert("Operacion denegada")
+         return;
+    }
 
     let datos_form = this.productoForm.value;
     if ( datos_form.price == undefined || datos_form.price == null || !(+datos_form.price >= 0)) {
@@ -91,6 +105,7 @@ export class ProductoFormComponent {
           let response = await this.productoService.update(this.producto);
           this.modalActive.close(response)
        } catch (error) {
+        alert("No se concretó la operación")
           console.log(error)
        }
     }

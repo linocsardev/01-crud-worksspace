@@ -1,6 +1,6 @@
 <div class="modal-header">
   <div class="modal-title">{{(accion=='add')? 'Registrar Producto': 'Editar producto'}}</div>
-  <button class="btn btn-close"></button>
+  <button class="btn btn-close" (click)="close()"></button>
 </div>
 <div class="modal-body">
   <form [formGroup]="productoForm">
@@ -9,26 +9,40 @@
           <input type="text" formControlName="title" class="form-control" id="title">
       </div>
       <div class="form-group">
-          <label for="image">Imagen</label>
+          <label for="image">Imagen (URL)</label>
           <input type="text" formControlName="image" class="form-control" id="image">
       </div>
-      <div class="form-group">
-          <label for="price">Precio</label>
-          <input type="text" formControlName="price" class="form-control" id="price">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+              <label for="price">Precio (S/)</label>
+              <input type="text" formControlName="price" class="form-control" id="price" placeholder="0.00">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+              <label for="category">Categoria</label>
+              <!-- <input type="text" formControlName="category" class="form-control" id="categoria"> -->
+              <select name="category" id="category" class="form-control" formControlName="category">
+                <option value="">Seleccionar...</option>
+                @for(categoria of categorias; track categoria.idcategoria){
+                  <option [value]="categoria.idcategoria">{{categoria.denominacion_categoria}}</option>
+                }
+              </select>
+          </div>
+        </div>
       </div>
 
 
-      <div class="form-group">
-          <label for="categoria">Caregoria</label>
-          <input type="text" formControlName="category" class="form-control" id="categoria">
-      </div>
 
       <div class="form-group">
           <label for="description">Descripción</label>
           <input type="text" formControlName="description" class="form-control" id="description">
       </div>
-      <button class="btn btn-danger" type="button" (click)="save()">Guardar</button>
-      <button class="btn btn-info" type="button" (click)="close()">Cancelar</button>
+      <div class="container-buttons">
+        <button class="btn btn-primary btn-sm" type="button" (click)="save()">Guardar</button>
+        <button class="btn btn-danger btn-sm" type="button" (click)="close()">Cancelar</button>
+      </div>
 
 
   </form>
