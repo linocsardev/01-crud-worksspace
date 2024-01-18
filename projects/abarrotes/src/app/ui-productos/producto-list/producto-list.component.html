@@ -3,6 +3,7 @@
   <div class="title-product">
     <h2>Gestión de productos</h2>
     <button class="btn btn-warning btn-sm" (click)="add()" >Agregar {{idcategoria}}</button>
+    <!-- <button class="btn btn-warning btn-sm" (click)="verResumen()" >Resumen</button> -->
   </div>
   <div>
     <select class="form-select" name="categoria" id="categoria" [(ngModel)]="idcategoria">
@@ -15,7 +16,7 @@
 </div>
 
 <div class="card-container">
-  @for(producto of productos ; track $index){
+  @for(producto of (newlist()) ; track $index){
     <div class="card-item" (dblclick)="detailProduct(producto)">
       <div class="card-container-img">
         <img class="card-img" src={{producto.image}} alt="">
@@ -23,7 +24,7 @@
       <div class="card-info">
         <span [ngClass]="getCategoryClass(producto.category)" class="card-info-category">{{producto.category}}</span>
         <div class="card-info-title">{{producto.title}}</div>
-        <div class="card-info-price">S/. {{producto.price}}</div>
+        <div class="card-info-price">S/. {{producto.price}} </div>
 
       </div>
       <div class="card-buttons">

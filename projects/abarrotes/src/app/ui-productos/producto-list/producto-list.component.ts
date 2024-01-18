@@ -11,106 +11,110 @@ import { Categoria } from '../../ui-categoria/categoria.inteface';
 import { FormsModule } from '@angular/forms';
 import { CatalogoService } from '../../catalogo/catalogo.service';
 
-
 @Component({
   selector: 'app-producto-list',
   standalone: true,
   imports: [HttpClientModule, NgbModalModule, FormsModule, CommonModule],
   providers: [ProductoService],
   templateUrl: './producto-list.component.html',
-  styleUrl: './producto-list.component.scss'
+  styleUrl: './producto-list.component.scss',
 })
 export class ProductoListComponent {
-  private productoService = inject(ProductoService)
-  private catalagoService = inject(CatalogoService)
-  private modal = inject(NgbModal)
+  private productoService = inject(ProductoService);
+  private catalagoService = inject(CatalogoService);
+  private modal = inject(NgbModal);
 
-  productos: Producto[] = []
-  categorias: Categoria[]= []
-  idcategoria:string = ""
-  // productos2: Array<Producto> = []
+  productos: Producto[] = [];
+  categorias: Categoria[] = [];
+  idcategoria: string = '';
+  sharedVariable: any;
 
-  async ngOnInit(){
+  filter?: string;
+
+  async ngOnInit() {
     await this.catalagoService.getCatalogos();
     this.categorias = this.catalagoService.categorias;
-    this.listar()
+    this.listar();
+    console.log("INICIO  ", this.newlist)
+    console.log(this.idcategoria)
   }
 
-  async listar(){
-    let productos = await this.productoService.list()
+  newlist(){
+    const nameCategoria = this.categorias.find(x=>x.idcategoria == +(this.idcategoria == '' ? '0': this.idcategoria))?.denominacion_categoria;
+    return this.productos.filter(x=>nameCategoria == undefined || x.category == nameCategoria)
+  }
+
+  async listar() {
+    let productos = await this.productoService.list();
     this.productos = productos
-    console.log(this.productos)
+  }
+  add() {
+    this.openForm();
+  }
+  update(producto: Producto) {
+    this.openForm('update', producto);
   }
 
-  add(){
-    this.openForm()
-  }
-  update(producto: Producto){
-    this.openForm('update', producto)
-  }
-
-  async openForm(accion = 'add', producto?: Producto){
-    let ref = this.modal.open(ProductoFormComponent)
-    ref.componentInstance.accion= accion;
+  async openForm(accion = 'add', producto?: Producto) {
+    let ref = this.modal.open(ProductoFormComponent);
+    ref.componentInstance.accion = accion;
     ref.componentInstance.idcategoria = this.idcategoria;
-    if(accion == "update"){
-      console.log("update1");
-
-      ref.componentInstance.producto = JSON.parse(JSON.stringify(producto))
+    this.sharedVariable = this.idcategoria;
+    console.log(this.idcategoria);
+    if (accion == 'update') {
+      ref.componentInstance.producto = JSON.parse(JSON.stringify(producto));
     }
     try {
       let result = await ref.result;
       console.log(result);
-      if(accion == "add"){
-        this.productos.unshift(result)
-      }else if(accion == 'update' && producto){
-      console.log("update2");
-
+      if (accion == 'add') {
+        this.productos.unshift(result);
+      } else if (accion == 'update' && producto) {
         producto.title = result.title;
         producto.price = result.price;
         producto.category = result.category;
         producto.description = result.description;
-        producto.image = result.image
+        producto.image = result.image;
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-
-  async deleted(producto: Producto, indice: number){
-    let confirmar = confirm(`estás seguro de eliminar al usuario? ${producto.title}?`)
-    if(confirmar){
+  async deleted(producto: Producto, indice: number) {
+    let confirmar = confirm(
+      `estás seguro de eliminar al usuario? ${producto.title}?`
+    );
+    if (confirmar) {
       try {
-        let result = this.productoService.delete(producto)
-        console.log('deleted => ', result)
-        this.productos.splice(indice, 1)
-
+        let result = this.productoService.delete(producto);
+        console.log('deleted => ', result);
+        this.productos.splice(indice, 1);
       } catch (error) {
-        console.log("Hubo un error al eliminar ", error);
+        console.log('Hubo un error al eliminar ', error);
       }
-
     }
   }
-  detailProduct(producto: Producto){
-    if(this.modal){
+  detailProduct(producto: Producto) {
+    if (this.modal) {
       let ref = this.modal.open(ProductoDetailComponent);
-      ref.componentInstance.producto = producto
+      ref.componentInstance.producto = producto;
     }
   }
-  getCategoryClass(category: string): string{
-
-    if(category == "men's clothing"){
+  getCategoryClass(category: string): string {
+    if (category == "men's clothing") {
       return 'category-men';
-    }else if(category == 'jewelery'){
+    } else if (category == 'jewelery') {
       return 'category-jewelery';
-    }else if( category == "women's clothing"){
+    } else if (category == "women's clothing") {
       return 'category-women';
-    }else if(category == "electronics"){
-      return "category-electronics";
-    }else{
-      return "category-default";
+    } else if (category == 'electronics') {
+      return 'category-electronics';
+    } else {
+      return 'category-default';
     }
   }
+  // verResumen(){
+  //   this.modal.open()
+  // }
 }
-
