@@ -26,7 +26,7 @@
               <select name="category" id="category" class="form-control" formControlName="category">
                 <option value="">Seleccionar...</option>
                 @for(categoria of categorias; track categoria.idcategoria){
-                  <option [value]="categoria.idcategoria">{{categoria.denominacion_categoria}}</option>
+                  <option [value]="categoria.denominacion_categoria">{{categoria.denominacion_categoria}}</option>
                 }
               </select>
           </div>

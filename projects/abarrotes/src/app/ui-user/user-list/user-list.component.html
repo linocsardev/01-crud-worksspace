@@ -1,16 +1,18 @@
 <main class="container-user">
-  <h2>Lista de Usuarios</h2>
-  <div class="container-btn-registrar">
-    <button class="btn btn-primary" (click)="add()">Registrar</button>
+  <div class="title-list-users">
+    <h2>Lista de Usuarios</h2>
+    <div class="container-btn-registrar">
+      <button class="btn btn-primary" (click)="add()">Registrar</button>
+    </div>
   </div>
   <div class="list-users">
     <div class="table-responsive-md">
       <table class="table table-bordered table-hover table-sm">
         <thead>
-          <tr class="bg-success">
+          <tr class="table-header-user">
             <th>Id</th>
-            <th>User</th>
-            <th>Email</th>
+            <th>Usuario</th>
+            <th>Correo</th>
             <th>Password</th>
             <th>Nombre</th>
             <th>Direccion</th>
@@ -20,7 +22,7 @@
         </thead>
         <tbody>
           @for(user of users; track $index){
-            <tr class="fila">
+            <tr class="fila-user" (dblclick)="userDetail(user)">
               <td>{{user.id}}</td>
               <td>{{user.username}}</td>
               <td>{{user.email}}</td>
@@ -30,8 +32,8 @@
               <td>{{user.address.city}} | {{user.address.street}} | {{user.address.number}} | {{user.address.zipcode}}</td>
               <td>{{user.phone}}</td>
               <td>
-                <button type="button" class="btn btn-success" (click)="update(user)">Editar</button>
-                <button type="button" class="btn btn-danger" (click)="deleted(user, $index)">Eliminar</button>
+                <button type="button" class="btn btn-success btn-sm" (click)="update(user)">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleted(user, $index)">Eliminar</button>
               </td>
             </tr>
           }

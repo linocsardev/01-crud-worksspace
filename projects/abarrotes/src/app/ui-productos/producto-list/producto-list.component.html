@@ -1,8 +1,11 @@
 
-<div class="p-2 d-flex gap-1">
-  <button class="btn btn-warning" (click)="add()" >Agregar {{idcategoria}}</button>
+<div class="title-list-product">
+  <div class="title-product">
+    <h2>Gestión de productos</h2>
+    <button class="btn btn-warning btn-sm" (click)="add()" >Agregar {{idcategoria}}</button>
+  </div>
   <div>
-    <select name="categoria" id="categoria" [(ngModel)]="idcategoria">
+    <select class="form-select" name="categoria" id="categoria" [(ngModel)]="idcategoria">
       <option value="">Seleccione</option>
       @for( categoria of categorias; track categoria.idcategoria){
         <option [value]="categoria.idcategoria">{{categoria.denominacion_categoria}}</option>
@@ -10,7 +13,7 @@
     </select>
   </div>
 </div>
-<h2>Gestión de productos</h2>
+
 <div class="card-container">
   @for(producto of productos ; track $index){
     <div class="card-item" (dblclick)="detailProduct(producto)">

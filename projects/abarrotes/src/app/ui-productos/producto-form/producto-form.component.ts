@@ -14,7 +14,7 @@ import { CatalogoService } from '../../catalogo/catalogo.service';
   templateUrl: './producto-form.component.html',
   styleUrl: './producto-form.component.scss'
 })
-export class ProductoFormComponent {
+export class  ProductoFormComponent {
 
   @Input() accion = 'add'
   @Input() idcategoria = ""
@@ -39,8 +39,11 @@ export class ProductoFormComponent {
       this.productoForm.get('description')?.setValue(this.producto?.description)
       this.productoForm.get('image')?.setValue(this.producto?.image)
     }else if(this.accion == 'add') {
-      console.log(this.idcategoria)
-      this.productoForm.get("category")?.setValue(this.idcategoria)
+      if(this.idcategoria){
+        let findCategory: Categoria = this.categorias[+this.idcategoria - 1]
+        this.productoForm.get('category')?.setValue(findCategory.denominacion_categoria)
+      }
+
     }
   }
 

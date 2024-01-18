@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { User } from '../user.interface';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,4 +11,15 @@ import { Component } from '@angular/core';
 })
 export class UserDetailComponent {
 
+  @Input() user!:User
+  modalActive = inject(NgbActiveModal)
+
+  ngOnInit(){
+    console.log(this.user)
+  }
+  close(){
+    if(this.modalActive){
+      this.modalActive.dismiss()
+    }
+  }
 }

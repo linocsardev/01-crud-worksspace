@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../user.service';
 import { User } from '../user.interface';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 @Component({
   selector: 'app-user-list',
@@ -66,7 +67,21 @@ export class UserListComponent {
       console.log(error)
     }
   }
-  deleted(user:User, indice:number){
+  async deleted(user:User, indice:number){
+    let confirmar = confirm(`¿Estás seguro de eliminar a ${user.username} de la lista`)
+    if(confirmar){
+      try {
+        let result = await this.userService.delete(user)
+        console.log("deleted ", result)
+        this.users.splice(indice, 1)
+      } catch (error) {
+        console.log("Hubo un error al eliminar ", error)
+      }
+    }
 
+  }
+  userDetail(user:User){
+    let ref = this.modal.open(UserDetailComponent)
+    ref.componentInstance.user = user;
   }
 }

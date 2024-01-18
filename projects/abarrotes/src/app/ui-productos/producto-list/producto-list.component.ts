@@ -48,6 +48,7 @@ export class ProductoListComponent {
   update(producto: Producto){
     this.openForm('update', producto)
   }
+
   async openForm(accion = 'add', producto?: Producto){
     let ref = this.modal.open(ProductoFormComponent)
     ref.componentInstance.accion= accion;

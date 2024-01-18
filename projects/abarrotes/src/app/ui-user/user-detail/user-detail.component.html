@@ -1,1 +1,30 @@
-<p>user-detail works!</p>
+<div class="modal-header">
+  <div class="modal-title"><h4>{{user.name.firstname}} {{user.name.lastname}}</h4></div>
+  <div class="btn btn-close" (click)="close()"></div>
+</div>
+<div class="modal-body">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td class="header-user"><strong>Usuario:</strong></td>
+        <td>{{user.username}}</td>
+      </tr>
+      <tr>
+        <td class="header-user"><strong>Correo:</strong></td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td class="header-user"><strong>Dirección:</strong></td>
+        <td>{{user.address.city}} | {{user.address.street}} | {{user.address.zipcode}}</td>
+      </tr>
+      <tr>
+        <td class="header-user"><strong>Geolocalización:</strong></td>
+        <td>Latitud: {{user.address.geolocation.lat}} | Longitud: {{user.address.geolocation.long}}</td>
+      </tr>
+      <tr>
+        <td class="header-user"><strong>Teléfono:</strong></td>
+        <td>{{user.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,3 +1,19 @@
+.title-list-product {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  .title-product{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h2 {
+      margin-right: 10px;
+    }
+  }
+}
+
 .card-container {
   display: grid;
   gap: 10px;
