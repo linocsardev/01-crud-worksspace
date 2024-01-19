@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { Categoria } from '../../ui-categoria/categoria.inteface';
 import { FormsModule } from '@angular/forms';
 import { CatalogoService } from '../../catalogo/catalogo.service';
+import { ProductoSummaryComponent } from '../producto-summary/producto-summary.component';
 
 @Component({
   selector: 'app-producto-list',
@@ -114,7 +115,9 @@ export class ProductoListComponent {
       return 'category-default';
     }
   }
-  // verResumen(){
-  //   this.modal.open()
-  // }
+  verResumen(){
+    let ref = this.modal.open(ProductoSummaryComponent)
+    ref.componentInstance.productos = this.productos
+    ref.componentInstance.categorias = this.categorias
+  }
 }
