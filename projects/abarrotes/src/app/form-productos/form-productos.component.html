@@ -1,0 +1,42 @@
+<p>form-productos works!</p>
+
+<div class="form" [formGroup] = "productoForm">
+  <div class="form-group">
+    <label for="" class="form-label">Codigo</label>
+    <input  type="text"
+            class="form-control"
+            formControlName="codigo"
+            id="codigo" />
+  </div>
+  <div class="form-group">
+    <label for="" class="form-label">categoria</label>
+    <input  type="text"
+            class="form-control"
+            formControlName="categoria"
+            id="categoria" />
+  </div>
+  <div class="form-group">
+    <label for="" class="form-label">precio</label>
+    <input  type="text"
+            class="form-control"
+            formControlName="precio"
+            id="precio"
+            [class.invalid]="inputIsValid('precio')"
+            />
+    <small *ngIf="inputIsValid('precio')" class="error-message">Solo se permite numeros</small>
+  </div>
+  <div class="form-group">
+    <label for="" class="form-label">marca</label>
+    <input  type="text"
+            class="form-control"
+            formControlName="marca"
+            id="marca"
+            [class.invalid]="inputIsValid('marca')"/>
+    <small *ngIf="inputIsValid('marca')" class="error-message" >Solo se permite letras</small>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary" (click)="guardar()">Guardar</button>
+    <button type="submit" class="btn btn-primary" (click)="cancelar()">Cancelar</button>
+  </div>
+
+</div>
