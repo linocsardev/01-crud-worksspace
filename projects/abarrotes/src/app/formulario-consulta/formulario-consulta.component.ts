@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ValidatorService } from '../services/validator';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-formulario-consulta',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './formulario-consulta.component.html',
   styleUrl: './formulario-consulta.component.scss'
 })
 export class FormularioConsultaComponent {
 
+  validorService = inject(ValidatorService)
+
+  ruc:string=''
 
   consultaForm = new FormGroup({
-    ruc: new FormControl('', [Validators.required]),
+    ruc: new FormControl('', [Validators.required, ]),
     fEmision: new FormControl('', [Validators.required]),
     tipoDocumento: new FormControl('', [Validators.required]),
     serie: new FormControl('', [Validators.required]),
@@ -20,4 +25,8 @@ export class FormularioConsultaComponent {
     monto: new FormControl('', [Validators.required]),
 
   })
+  ngOnInit(){
+    console.log(this.ruc)
+  }
+
 }

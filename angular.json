@@ -303,7 +303,13 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/abarrotes/src/favicon.ico",
-              "projects/abarrotes/src/assets"
+              "projects/abarrotes/src/assets",
+              {
+                "glob": "**/*",
+                "input": "assets",
+                "output": "assets"
+
+              }
             ],
             "styles": [
               "projects/abarrotes/src/styles.scss"

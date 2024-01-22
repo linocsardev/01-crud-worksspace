@@ -1,0 +1,40 @@
+.container {
+  width: 30%;
+}
+.form-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-title {
+  color: #0d6efd;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.form {
+  border: 1px solid #d3d3d3;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 1px rgb(235, 234, 234);
+  font-family: 'Montserrat', sans-serif;
+
+}
+.logo-form-consulta {
+  width: 70px;
+}
+#btn-consultar {
+  text-align: center;
+}
+
+.form-control:focus {
+  border: 1px solid rgb(15, 241, 15);
+  box-shadow: none;
+
+}
+.form-select:focus {
+  border: 1px solid rgb(15, 241, 15);
+  box-shadow: none;
+
+}
+.text-danger {
+  color: #ef5350;
+}
